@@ -19,22 +19,22 @@ let timerInterval;
 // so the remaining time is the main variable for the timer when the remaining time got to 0 the clock will stop and alert the user
 // a important idea is to pause the timer
 let endtime;
-//the remainning
-var remainning;
+//the remaining
+var remaining;
 //  minute update it can use to end the clock or expand the timer!!!!
 ins.addEventListener('click',()=>{
-    min.innerHTML=parseInt(min.innerText)+1;
-    if(remainning)
+    min.innerHTML=String(parseInt(min.innerText)+1).padStart(2,'0');
+    if(remaining)
     {
         endtime=endtime+60*1000
     }
 })
 de.addEventListener('click',()=>{
-    if(min.innerText>0&&!remainning)
+    if(min.innerText>0&&!remaining)
     {
-        min.innerHTML=parseInt(min.innerText)-1;
+        min.innerHTML=String(parseInt(min.innerText)-1).padStart(2,'0');
     }
-    if(remainning)
+    if(remaining)
     {
         endtime=endtime-60*1000
     }
@@ -42,27 +42,27 @@ de.addEventListener('click',()=>{
 
 
 
-//main function calculate the remainning and display the min,sec and stop it when hit 0
+//main function calculate the remaining and display the min,sec and stop it when hit 0
 const CountDownClock=()=>{
-    remainning=endtime-Date.now();
-    min.innerHTML=Math.floor(remainning/60000);
-    sec.innerHTML=Math.floor((remainning%60000)/1000);
-    if(remainning<=0){
+    remaining=endtime-Date.now();
+    min.innerHTML=String(Math.floor(remaining/60000)).padStart(2,'0');
+    sec.innerHTML=String(Math.floor((remaining%60000)/1000)).padStart(2,'0');
+    if(remaining<=0){
         clearInterval(timerInterval)
         alert("Het gio nghi!");
         min.innerHTML='00';
         sec.innerHTML='00';
-        // for remainning to be nan so the pause funtion would work
-        //go to the start timer we will have endtime =(remainning||duration)+Date.now();
-        //that be cause when we pause the timer we will use the remainning for counting not the duration 
+        // for remaining to be nan so the pause funtion would work
+        //go to the start timer we will have endtime =(remaining||duration)+Date.now();
+        //that be cause when we pause the timer we will use the remaining for counting not the duration 
         //and if we start again we will need to use the duration so put the remain in nan for the use of duration
-        remainning=NaN
+        remaining=NaN
     }
 }
 const StartTimer=()=>{
     let duration=parseInt(min.innerText)*60*1000
     //important factore
-    endtime =(remainning||duration)+Date.now();   
+    endtime =(remaining||duration)+Date.now();   
     // need to clear the inter val before run to clear all the running clock 
     clearInterval(timerInterval)
     timerInterval=setInterval(CountDownClock,1000);
