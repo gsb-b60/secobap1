@@ -24,7 +24,8 @@
 
 ##  Screenshots
 
-*add here a screenshot or short GIF/video*
+![ảnh](https://github.com/user-attachments/assets/22593fab-80ce-480c-bc03-6805fcb3b498)
+
 
 ##  Lessons Learned
 
