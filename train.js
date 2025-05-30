@@ -21,6 +21,10 @@ let timerInterval;
 let endtime;
 //the remaining
 var remaining;
+
+//the logging variable
+var workoutlog=document.getElementById("workout-log")
+var addSet=document.getElementById("add-set")
 //  minute update it can use to end the clock or expand the timer!!!!
 ins.addEventListener('click',()=>{
     min.innerHTML=String(parseInt(min.innerText)+1).padStart(2,'0');
@@ -74,3 +78,37 @@ start.addEventListener('click',StartTimer);
 pause.addEventListener('click',()=>{
     clearInterval(timerInterval);
 })
+
+// create a function for logging exercise per set
+
+const CreateLog=()=>{
+    // select all the set-log and use the latest value to create next set
+    const allSet=document.getElementsByClassName("set-log");
+    const lastSet=allSet[allSet.length-1]
+    // get the information about the last set
+    const weight=lastSet.querySelector("#weight").value
+    const rep=lastSet.querySelector("#rep").value
+    const rir=lastSet.querySelector("#rir").value
+    const set=allSet.length+1
+    console.log(allSet.length)
+    console.log(weight,rep,rir)
+    // create a new setlog div with the previous data
+    workoutlog.innerHTML+=`
+                <div class="set-log">
+                    <p>set</p>
+                    <p id="set-number">${set}</p>
+                    <span id="exercise-name">bench press</span>
+                    <p>weight</p>
+                    <input type="number" min="0" id="weight" value="${weight}">
+                    <p>Rep</p>
+                    <input type="number" min="0" name="" id="rep" value="${rep}">
+                    <p >Rep InReverse </p>
+                    <input id="rir" min="0" max="10" type="number" value="${rir}">
+                </div>
+                    `
+}
+
+addSet.addEventListener("click",CreateLog)
+
+
+//

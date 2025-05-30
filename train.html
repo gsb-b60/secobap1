@@ -32,6 +32,25 @@
                     <button id="start">start</button><button id="pause">pause</button>
                 </div>    
             </div>
+            <h1>workout log</h1>
+            <!-- a input from every time the timer go off -->
+            <div id="workout-log">
+                <!-- a standard set log -->
+                 <!-- every set have class set-log -->
+                <div class="set-log">
+                    <p>set</p>
+                    <p id="set-number">1</p>
+                    <span id="exercise-name">bench press</span>
+                    <p>weight</p>
+                    <input type="number" min=0 id="weight" value=60>
+                    <p>Rep</p>
+                    <input type="number" min="0" name="" id="rep" value="6">
+                    <p >Rep InReverse </p>
+                    <input id="rir" min="0" max="10" type="number" value="1">
+                </div>
+            </div>
+            <button id="add-set">ADD SET</button>
+            <button>ADD EXERCISE</button>
         </main>
     </body>
     <script src="train.js"></script>
