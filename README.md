@@ -28,6 +28,7 @@
 ![ảnh](https://github.com/user-attachments/assets/22593fab-80ce-480c-bc03-6805fcb3b498)
 
 ![Screenshot 2025-05-29 202212](https://github.com/user-attachments/assets/2a2b4d79-37e6-4f9c-adc7-187aab46c6aa)
+![ảnh](https://github.com/user-attachments/assets/c92a3b6f-de71-4e9c-957e-dc4c87eddf38)
 
 ##  Lessons Learned
 
