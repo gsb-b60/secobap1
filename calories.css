@@ -1,0 +1,50 @@
+:root{
+    --main-color-1:rgb(94, 117, 117);
+    --main-color-2:rgba(194, 231, 255, 0.445);
+    --main-color-3:rgb(8, 35, 39);
+    --side-color-1:rgb(77, 143, 155);
+}
+
+.food-item{
+    display: flex;
+    background-color: var(--main-color-1);
+    width: 90vw;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px auto ;
+    border-top: 3px solid var(--main-color-2);
+    border-right: 3px solid var(--main-color-2);
+    cursor: pointer;
+}
+.food-item.child{
+    background-color: rgb(94, 117, 117);
+    display: flex;
+    flex-direction: column;
+}
+.food-item input[type="checkbox"]{
+    display: inline-block;
+    margin:0 7px ;
+}
+.food-item:hover{
+    background-color: var(--main-color-3);
+}
+#foodname{
+    font-weight: bold;
+}
+#log-food{
+    position: fixed;
+    bottom: 20px;
+    right: 11vw;
+    background-color: var(--main-color-3);
+    border-radius: 17px;
+    display: block;
+    padding:20px;
+    font-weight: bold;
+    z-index: 1000;
+    cursor: pointer;
+     
+}
+#log-food:hover{
+    background-color: var(--side-color-1);
+    padding: 25px;
+}
