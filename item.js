@@ -73,7 +73,7 @@ document.getElementById('unit').addEventListener("change",changeStep)
 
 addFood.addEventListener("click",()=>{
   // create local storage when user hit add food
-  window.location.href=`calories.html?unitRatio=${unitRatio.toFixed(3)}&quantity=${quantity.value}&foodCode=${foodItem.code}`
+  window.location.href=`calories.html?unitRatio=${unitRatio.toFixed(3)}&quantity=${quantity.value}&foodCode=${foodItem.code}&calo=${caloValue}`
 })
 back.addEventListener('click',()=>{
   window.location.href=`calories.html?`
