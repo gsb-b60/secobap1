@@ -7,12 +7,6 @@ Table of Contents
 
     Technologies Used
 
-    Project Structure
-
-    Setup and Installation
-
-    Usage
-
     Future Enhancements
 
 Features
@@ -77,22 +71,6 @@ Technologies Used
         URL parameter parsing and manipulation (URLSearchParams, history.replaceState)
 
     Google Fonts: Inter for general text and Orbitron for a digital clock aesthetic.
-
-Project Structure
-
-The project is organized into the following main files:
-
-sẽ-cơ-bắp/
-├── index.html          # Main landing page (or potentially a placeholder)
-├── train.html          # The workout tracking and timer page
-├── calories.html       # The calories calculator and food selection page
-├── item.html           # Page to display individual food item details
-├── styles.css          # General styles applied across multiple pages (e.g., header)
-├── calories.css        # Specific styles for the calories.html page
-├── train.js            # JavaScript for the training module
-├── calories.js         # JavaScript for the calories calculator module
-└── foodData.js         # JavaScript file containing your predefined food data
-
 
 Usage
 Training Page (train.html)
