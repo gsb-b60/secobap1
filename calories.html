@@ -18,18 +18,30 @@
         </header>
         <main>
             <h1>CALORIES CALCULATOR</h1>
-                <SECTION id="calculator">
-                    <p id="lead-p">Frequent breakfast food</p>
-                    <div class="food-item">
-                        <input type="checkbox" class="" name="" id="">
-                        <span id="foodname">Chicken cooked</span>
-                        <div id="food-information">
-                            <span><span id="recent-calories">100</span>cals/<span id="recent-gram">176</span>g</span>
-                        </div>
+            <p id="lead-p">Frequent breakfast food</p>
+            <SECTION id="calculator">
+            <form action="" id="foodForm">
+                
+                <!-- <div class="food-item">
+                    <input type="checkbox" class="" name="" id="">
+                    <span id="foodname">Chicken cooked</span>
+                    <div id="food-information">
+                        <span><span id="recent-calories">100</span>cals/<span id="recent-gram">176</span>g</span>
                     </div>
-                    <button id="log-food" type="submit">Log food</button>
-                </SECTION>
+                </div> -->
+                
+            </form>
+            </SECTION>
+            <div id="summary-section">
+                <h2>Your Daily Totals</h2>
+                <p>Calories: <span id="total-calories">0</span> kcal</p>
+                <p>Protein: <span id="total-protein">0</span> g</p>
+                <p>Fat: <span id="total-fat">0</span> g</p>
+                <p>Carbohydrates: <span id="total-carbs">0</span> g</p>
+                <div id="meal"></div>
+            </div>
+            <button id="log-food" type="button">Log food</button>
         </main>
     </body>
-    <script src="calories.js"></script>
+    <script type="module" src="calories.js"></script>
 </html>
