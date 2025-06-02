@@ -1,211 +1,22 @@
 // again use the old data to load the information page
-const foodData = [
-  {
-    code:1,
-    name: "chicken cooked",
-    calo: 167, // per 100g
-    protein: 25,
-    fat: 7,
-    carb: 0,
-  },
-  {
-    code:2, 
-    name: "rice white cooked",
-    calo: 130,
-    protein: 2.7,
-    fat: 0.3,
-    carb: 28,
-  },
-  {
-    code:3, 
-    name: "broccoli boiled",
-    calo: 35,
-    protein: 2.4,
-    fat: 0.4,
-    carb: 7.2,
-  },
-  {
-    code:4, 
-    name: "salmon baked",
-    calo: 206,
-    protein: 20,
-    fat: 13,
-    carb: 0,
-  },
-  {
-    code:5, 
-    name: "egg whole boiled",
-    calo: 155,
-    protein: 13,
-    fat: 11,
-    carb: 1.1,
-  },
-  {
-    code:6, 
-    name: "beef lean cooked",
-    calo: 250,
-    protein: 26,
-    fat: 15,
-    carb: 0,
-  },
-  {
-    code:7,
-    name: "potato baked",
-    calo: 93,
-    protein: 2.5,
-    fat: 0.1,
-    carb: 21,
-  },
-  {
-    code:8,
-    name: "apple raw",
-    calo: 52,
-    protein: 0.3,
-    fat: 0.2,
-    carb: 14,
-  },
-  {
-    code:9, 
-    name: "oats raw",
-    calo: 389,
-    protein: 16.9,
-    fat: 6.9,
-    carb: 66.3,
-  },
-  {
-    code:10, 
-    name: "milk whole",
-    calo: 61,
-    protein: 3.2,
-    fat: 3.3,
-    carb: 4.8,
-  },
-  {
-    code:11, 
-    name: "almonds raw",
-    calo: 579,
-    protein: 21,
-    fat: 49.9,
-    carb: 21.6,
-  },
-  {
-    code:12, 
-    name: "spinach raw",
-    calo: 23,
-    protein: 2.9,
-    fat: 0.4,
-    carb: 3.6,
-  },
-  {
-    code:13, 
-    name: "banana raw",
-    calo: 89,
-    protein: 1.1,
-    fat: 0.3,
-    carb: 23,
-  },
-  {
-    code:14, 
-    name: "lentils boiled",
-    calo: 116,
-    protein: 9,
-    fat: 0.4,
-    carb: 20,
-  },
-  {
-    code:15, 
-    name: "bread whole wheat",
-    calo: 265,
-    protein: 13,
-    fat: 3.6,
-    carb: 49,
-  },
-  {
-    code:16,
-    name: "yogurt plain",
-    calo: 59,
-    protein: 10,
-    fat: 0.4,
-    carb: 3.6,
-  },
-  {
-    code:17, 
-    name: "tuna canned in water",
-    calo: 116,
-    protein: 25.5,
-    fat: 0.8,
-    carb: 0,
-  },
-  {
-    code:18,
-    name: "sweet potato baked",
-    calo: 86,
-    protein: 1.6,
-    fat: 0.1,
-    carb: 20,
-  },
-  {
-    code:19, 
-    name: "peas green boiled",
-    calo: 81,
-    protein: 5.4,
-    fat: 0.4,
-    carb: 14.5,
-  },
-  {
-    code:20, 
-    name: "cheddar cheese",
-    calo: 403,
-    protein: 25,
-    fat: 33,
-    carb: 1.3,
-  },
-  {
-    code:21, 
-    name: "carrots raw",
-    calo: 41,
-    protein: 0.9,
-    fat: 0.2,
-    carb: 9.6,
-  },
-  {
-    code:22, 
-    name: "shrimp cooked",
-    calo: 85,
-    protein: 20,
-    fat: 0.5,
-    carb: 0.2,
-  },
-  {
-    code:23, 
-    name: "quinoa cooked",
-    calo: 120,
-    protein: 4.4,
-    fat: 1.9,
-    carb: 21.3,
-  },
-  {
-    code:24, 
-    name: "avocado raw",
-    calo: 160,
-    protein: 2,
-    fat: 14.7,
-    carb: 8.5,
-  },
-  {
-    code:25,
-    name: "coffee black",
-    calo: 1,
-    protein: 0.1,
-    fat: 0,
-    carb: 0,
-  },
-];
+import { foodData } from "./foodData.js"
+//the big object for the page
+let foodItem
+let unitRatio=0.01
 
+//declere variable for listing food marco
+const protein=document.getElementById('protein')
+const carb=document.getElementById('carb')
+const fat=document.getElementById('fat')
+const calo=document.getElementById('total-calories')
+const foodName=document.getElementById('food-name')
 
+let proteinValue,carbValue,fatValue,caloValue,foodNameValue
 
-
-
+//quantity variable for calculating
+const quantity=document.getElementById("food-quantity")
+const addFood=document.getElementById("add")
+const back=document.getElementById("back")
 //take the parameter
 document.addEventListener("DOMContentLoaded",()=>{
     const urlParams = new URLSearchParams(window.location.search);
@@ -213,12 +24,57 @@ document.addEventListener("DOMContentLoaded",()=>{
     //then add the variable for the page
     if(foodCode)
     {
-        const foodItem=foodData.find(item=>item.code=foodCode)
+        foodItem=foodData.find(item=>item.code==foodCode)
+        loadFoodInfo(foodItem,1)
         console.log(foodItem)
-
-        
     }
 })
+// user use different unit
+const unit={
+  gram:1,
+  oz:28.35,
+  lb:453.59
+}
+// different unit have different step 
+const unitStep={
+  gram:50,
+  oz:2,
+  lb:1
+}
+
+const loadFoodInfo=(foodItem,ratio)=>{
+  proteinValue=Math.round(foodItem.protein*ratio);
+  carbValue=Math.round(foodItem.carb*ratio);
+  fatValue=Math.round(foodItem.fat*ratio);
+  foodNameValue=foodItem.name;
+  caloValue=Math.round(foodItem.calo*ratio);
 
 
+  protein.innerText=proteinValue
+  carb.innerText=carbValue
+  fat.innerText=fatValue
+  foodName.innerText=foodNameValue
+  calo.innerHTML=caloValue
+}
+//when a user input the quantity the whole marco change 
+quantity.addEventListener("input",()=>{
+  unitRatio=unit[document.getElementById('unit').value]/100
+  loadFoodInfo(foodItem,quantity.value*unitRatio)
+})
+const changeStep=()=>{
+  const step=unitStep[document.getElementById('unit').value]
+  quantity.step=step
+  quantity.value=0
+  loadFoodInfo(foodItem,0)
+}
 
+document.getElementById('unit').addEventListener("change",changeStep)
+
+
+addFood.addEventListener("click",()=>{
+  // create local storage when user hit add food
+  window.location.href=`calories.html?unitRatio=${unitRatio.toFixed(3)}&quantity=${quantity.value}&foodCode=${foodItem.code}`
+})
+back.addEventListener('click',()=>{
+  window.location.href=`calories.html?`
+})

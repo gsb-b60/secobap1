@@ -20,23 +20,37 @@
             <!-- create a normal landing page for the food  -->
             <!-- user able to send data about their meal to the page -->
             <!-- a specific food image hehe -->
-            <img src="https://via.placeholder.com/400x250?text=Your+Food+Image" alt="Image of the specific food">
-            <h1 id="food-name"></h1>
-            <label for="food-quantity">Add quantity:</label>
-            <input type="number" id="food-quantity" min="0" value="100">
-            <select id="unit" name="unit">
-                <option value="gram">gram</option>
-                <option value="oz">ounce (oz)</option>
-                <option value="lb">pound (lb)</option>
-                <option value="cup">cup</option>
-            </select>
-            
-            <div ><span>protein</span><span id="protein"></span></div>
-            <div ><span>carb</span><span id="carb"></span></div>
-            <div ><span>fat</span><span id="fat"></span></div>
-
-
+            <div id="food-item-detail">
+                <img src="" alt="">
+                <h1 id="food-name"></h1>
+                <label for="food-quantity">Add quantity:</label>
+                <input type="number" id="food-quantity" min="0" value="100" step="50">
+                <select id="unit" name="unit">
+                    <option value="gram">gram</option>
+                    <option value="oz">ounce (oz)</option>
+                    <option value="lb">pound (lb)</option>
+                    <option value="cup">cup(no support)</option>
+                </select>
+                <div class="macro-row total-calories">
+                    <span>Total Calories:</span>
+                    <span id="total-calories">0 kcal</span>
+                </div>
+                 <div class="macro-row">
+                    <span>Protein:</span>
+                    <span id="protein">0g</span>
+                </div>
+                <div class="macro-row">
+                    <span>Carbs:</span>
+                    <span id="carb">0g</span>
+                </div>
+                <div class="macro-row">
+                    <span>Fat:</span>
+                    <span id="fat">0g</span>
+                </div>
+                <button id="add" type="submit">ADD FOOD</button>
+                <button id="back" type="submit">BACK</button>
+            </div>   
         </main>
     </body>
-    <script src="item.js"></script>
+    <script src="item.js" type="module"></script>
 </html>

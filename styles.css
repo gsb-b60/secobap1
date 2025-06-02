@@ -1,3 +1,8 @@
+:root{
+    --page-color-red:#5c2828;
+    --page-color-darkred:#380f0f;
+    --page-color-superred:#9c1010;
+}   
 *{
     /*reset*/
     margin:0;
@@ -12,3 +17,21 @@ html{
     background-color: #000000;
 }
 
+input[type="number"],select,button{
+    background-color: var(--page-color-red);
+    padding:2px 3px;
+    border:1px solid var(--page-color-darkred);
+    border-radius:5px;
+    box-shadow: 0 1px 3px rgba(104, 104, 104, 0.88);
+    outline:none;
+}
+input:focus,select:focus,button:focus{
+    border-color: var(--page-color-superred) ;
+    box-shadow: inset 0 1px 3px var(--page-color-red),0 0 5px var(--page-color-superred);
+}
+select{
+    /* insane css for not normal ahh select */
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none
+}

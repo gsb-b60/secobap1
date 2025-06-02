@@ -1,262 +1,166 @@
-const arr=[1,2,3]
-// console.log(arr)
-// for(let i=0;i<arr.length;i++)
-// {
-//     console.log(arr[i])
-// }
-// arr.forEach(element => {
-//     console.log(element)
-// });
-
 
 // create a array of food item and its value
-const foodData = [
-  {
-    code:1,
-    name: "chicken cooked",
-    calo: 167, // per 100g
-    protein: 25,
-    fat: 7,
-    carb: 0,
-  },
-  {
-    code:2, 
-    name: "rice white cooked",
-    calo: 130,
-    protein: 2.7,
-    fat: 0.3,
-    carb: 28,
-  },
-  {
-    code:3, 
-    name: "broccoli boiled",
-    calo: 35,
-    protein: 2.4,
-    fat: 0.4,
-    carb: 7.2,
-  },
-  {
-    code:4, 
-    name: "salmon baked",
-    calo: 206,
-    protein: 20,
-    fat: 13,
-    carb: 0,
-  },
-  {
-    code:5, 
-    name: "egg whole boiled",
-    calo: 155,
-    protein: 13,
-    fat: 11,
-    carb: 1.1,
-  },
-  {
-    code:6, 
-    name: "beef lean cooked",
-    calo: 250,
-    protein: 26,
-    fat: 15,
-    carb: 0,
-  },
-  {
-    code:7,
-    name: "potato baked",
-    calo: 93,
-    protein: 2.5,
-    fat: 0.1,
-    carb: 21,
-  },
-  {
-    code:8,
-    name: "apple raw",
-    calo: 52,
-    protein: 0.3,
-    fat: 0.2,
-    carb: 14,
-  },
-  {
-    code:9, 
-    name: "oats raw",
-    calo: 389,
-    protein: 16.9,
-    fat: 6.9,
-    carb: 66.3,
-  },
-  {
-    code:10, 
-    name: "milk whole",
-    calo: 61,
-    protein: 3.2,
-    fat: 3.3,
-    carb: 4.8,
-  },
-  {
-    code:11, 
-    name: "almonds raw",
-    calo: 579,
-    protein: 21,
-    fat: 49.9,
-    carb: 21.6,
-  },
-  {
-    code:12, 
-    name: "spinach raw",
-    calo: 23,
-    protein: 2.9,
-    fat: 0.4,
-    carb: 3.6,
-  },
-  {
-    code:13, 
-    name: "banana raw",
-    calo: 89,
-    protein: 1.1,
-    fat: 0.3,
-    carb: 23,
-  },
-  {
-    code:14, 
-    name: "lentils boiled",
-    calo: 116,
-    protein: 9,
-    fat: 0.4,
-    carb: 20,
-  },
-  {
-    code:15, 
-    name: "bread whole wheat",
-    calo: 265,
-    protein: 13,
-    fat: 3.6,
-    carb: 49,
-  },
-  {
-    code:16,
-    name: "yogurt plain",
-    calo: 59,
-    protein: 10,
-    fat: 0.4,
-    carb: 3.6,
-  },
-  {
-    code:17, 
-    name: "tuna canned in water",
-    calo: 116,
-    protein: 25.5,
-    fat: 0.8,
-    carb: 0,
-  },
-  {
-    code:18,
-    name: "sweet potato baked",
-    calo: 86,
-    protein: 1.6,
-    fat: 0.1,
-    carb: 20,
-  },
-  {
-    code:19, 
-    name: "peas green boiled",
-    calo: 81,
-    protein: 5.4,
-    fat: 0.4,
-    carb: 14.5,
-  },
-  {
-    code:20, 
-    name: "cheddar cheese",
-    calo: 403,
-    protein: 25,
-    fat: 33,
-    carb: 1.3,
-  },
-  {
-    code:21, 
-    name: "carrots raw",
-    calo: 41,
-    protein: 0.9,
-    fat: 0.2,
-    carb: 9.6,
-  },
-  {
-    code:22, 
-    name: "shrimp cooked",
-    calo: 85,
-    protein: 20,
-    fat: 0.5,
-    carb: 0.2,
-  },
-  {
-    code:23, 
-    name: "quinoa cooked",
-    calo: 120,
-    protein: 4.4,
-    fat: 1.9,
-    carb: 21.3,
-  },
-  {
-    code:24, 
-    name: "avocado raw",
-    calo: 160,
-    protein: 2,
-    fat: 14.7,
-    carb: 8.5,
-  },
-  {
-    code:25,
-    name: "coffee black",
-    calo: 1,
-    protein: 0.1,
-    fat: 0,
-    carb: 0,
-  },
-];
+// import from fooddata
+import { foodData } from "./foodData.js";
 
-// display the food infor
 // declear variable
 const calculator=document.getElementById("calculator")
+const foodFrom=document.getElementById('foodFrom')
+let foodArr=[];
 
-
-const display_food_item=()=>{
-    foodData.forEach(food=>{
-        calculator.innerHTML+=
-        `
-            <div class="food-item" id="${food.code}">
-                        <input type="checkbox", name="" id="food-item-${food.code} class="food-checkbox">
-                        <span id="foodname">${food.name}</span>
-                        <div id="food-information">
-                            <span><span id="recent-calories">${food.calo}</span>cals/<span id="recent-gram">100</span>g</span>
-                        </div>
-                    </div>
-        `
-    })
+const createFoodItemHtml=(food,isChecked,displayCalo,displayGram)=>{
+    const checkedAtt=isChecked? 'checked':'';
+    const currentCalo=displayCalo||food.calo
+    const currentGram=displayGram||100
+    return`
+    <div class="food-item" id="${food.code}">
+        <input type="checkbox" name="${food.code}" id="food-item-${food.code}" class="food-checkbox" ${checkedAtt}>
+        <span id="foodname">${food.name}</span>
+        <div class="food-information">
+            <span><span class="recent-calories">${currentCalo}</span>cals/<span class="recent-gram">${currentGram}</span>g</span>
+        </div>
+    </div>
+    `
 }
 
-display_food_item()
+const renderFoodItem=(allFood,selectedFoodInfor=[])=>{
+    let htmlFood='';
+    const topItemHtml=[];
+    const selectedFoodMap=new Map(selectedFoodInfor.map(f=>[f.id,f]))
+    allFood.forEach(food=>{
+        const selectedInfor=selectedFoodMap.get((food.code).toString())
+        const checked=!!selectedInfor
+        const displayCalo=selectedInfor? selectedInfor.displayCalo:food.calo;
+        const displayGram=selectedInfor? selectedInfor.foodQuantity:100
+        const itemHtml=createFoodItemHtml(food,checked,displayCalo,displayGram)
+        if(checked)
+        {
+            topItemHtml.push(itemHtml)
+        }
+        else{
+            htmlFood+=itemHtml
+        }
+    })
+    calculator.innerHTML=topItemHtml.join('')+htmlFood
+    clickAbleDiv()
+}
+document.addEventListener("DOMContentLoaded",()=>{
+    const existingData=sessionStorage.getItem('userChoice')
+    foodArr=JSON.parse(existingData)||[]
+    console.log(foodArr)
+    const urlParams=new URLSearchParams(window.location.search)
+    const unitRatio=urlParams.get('unitRatio')
+    const quantity=urlParams.get('quantity')
+    const foodCode=urlParams.get('foodCode')
+    //take the infor from the url
+    if(unitRatio&& quantity&&foodCode)
+    {
+       updateFoodArr(unitRatio,quantity,foodCode,true)
+       console.log(unitRatio,quantity)
+    }
+    renderFoodItem(foodData,foodArr)
+    
+})
+
+
+
+
+
+
+
+// log food event for first clear the sessionstorage
+document.getElementById('log-food').addEventListener("click",()=>{
+    sessionStorage.removeItem('userChoice');
+    console.log('du lieu da xoas')
+    //chooseFood()
+})
 
 //click able div food-item
-const foodItems=document.querySelectorAll(".food-item");
-foodItems.forEach(item=>{
-    item.addEventListener('click',(event)=>{
+
+const clickAbleDiv=()=>{
+    const foodItems=document.querySelectorAll(".food-item");
+    foodItems.forEach(item=>{
+        item.addEventListener('click',(event)=>{
         const clickedElement=event.target
         // event delegation for the food-item
         // user click on the check box the box checked
         // user click other tag a event will be fire
         // another way console.log(clickedElement.classList.content)
-        if(clickedElement.tagName==='INPUT')
-        {
-            console.log("ok bro")
-        }
-        else{
-            console.log("we going to the moon",item.id)
-            nav_to_info(item.id)
-            
-        }
+            if(clickedElement.tagName!=='INPUT')
+            {
+                nav_to_info(item.id)
+            }
+        })
     })
-})
 
+}
 
 const nav_to_info=(foodCode)=>{
     window.location.href=`item.html?code=${foodCode}`
 }
+
+
+calculator.addEventListener('change',(e)=>{
+    if(e.target.type==='checkbox')
+    {
+        const checkbox=e.target
+        const listItem=checkbox.closest('div')
+        if(checkbox.checked)
+        {
+            
+            calculator.prepend(listItem)
+            updateFoodArr(0.01,100,checkbox.name,true)
+        }
+        if(!checkbox.checked)
+        {
+            updateFoodArr(0.01,100,checkbox.name,false)
+        }
+        
+    }
+})
+
+
+
+
+const updateFoodArr=(unitRatio,quantity,foodCode,isChecked)=>{
+    const existingData=sessionStorage.getItem('userChoice')
+    foodArr=JSON.parse(existingData)||[]
+    if(isChecked)
+    {
+        foodArr.push({
+        foodUR:unitRatio,
+        foodQuantity:quantity,
+        id:foodCode
+        })
+        console.log("da them food ",foodArr[foodArr.length-1])
+    }
+    else{
+        foodArr=foodArr.filter(food=>food.id!==foodCode)
+    }
+    sessionStorage.setItem('userChoice',JSON.stringify(foodArr))
+    console.log(foodArr,"food arr moi")
+    renderFoodItem(foodData,foodArr)
+}
+
+
+// // listing food been choosen first of the list
+
+
+// //create a function
+// //add food infor from food item collection
+
+
+
+// //choose all the food the user choose
+// const chooseFood=()=>{
+//     const foodChecked=document.querySelectorAll('input[class="food-checkbox"]')
+//     const checkedFoodList=[]
+//     foodChecked.forEach(checkbox=>{
+//         if(checkbox.checked)
+//         {
+//             checkedFoodList.push(checkbox.name);
+//         }
+
+//     })
+//     console.log(checkedFoodList)
+// }

@@ -45,6 +45,5 @@
      
 }
 #log-food:hover{
-    background-color: var(--side-color-1);
-    padding: 25px;
+    background-color: var(--main-color-1);
 }
